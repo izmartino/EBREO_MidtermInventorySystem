@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <title>Login your Account</title>
+    <style>
+      body {
+        background-image: url(Images/GATE.jpg);
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!--------------------------------NAVBAR-------------------------------->
+
+    <a href="index.html" style="text-decoration: none;">
+      <div class="text-bg-dark p-3 display-3 text-center" style="font-weight: bolder;">GARAHEMOTO</div>
+    </a>
+    <nav class="navbar navbar-expand-lg text-uppercase bg-dark navbar-dark">
+      <div class="container">
+    </nav>
+    
+    <!---------------------------FORM---------------------------->
+<div
+      class="container rounded-5 shadow-lg"
+      style="
+        margin-top: 5%;
+        padding-top: 0.3ch;
+        padding-left: 3ch;
+        padding-right: 3ch;
+        width: fit-content;
+        font-family: 'Century Gothic', sans-serif;
+        font-weight: bold;
+        background-color: rgba(25, 151, 235, 0.8);">
+
+      <br/>
+
+      <h2 style="font-weight: bold">LOG IN</h2>
+      <hr />
+      <form id="login-form">
+        <div class="container">
+          <label for="email">Email:</label>
+          <br />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            style="width: 420px"
+            placeholder="Your email address"
+            required>
+          <br />
+          <br />
+          <label for="password">Password:</label><br />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            minlength="6"
+            style="width: 420px"
+            placeholder="Enter password"
+            required>
+          <br />
+          <br />
+          
+          <button
+            type="submit"
+            class="btn btn-warning"
+            style="color: whitesmoke; font-size: larger; font-weight: bold">Log in
+          </button>
+
+          <p class="small fw-bold mt-2 pt-1 mb-0">
+            Don't have an account ?
+            <a href="index.html" class="link-warning">Register here!</a>
+          </p>
+          <br />
+        </div>
+      </form>
+
+
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+
+
+
+    <script>
+      // Initialize Firebase app
+      const firebaseConfig = {
+  apiKey: "AIzaSyAc0n1Szju4jbjYCGyZgYql2X1_Y0NVyss",
+  authDomain: "authentication-89230.firebaseapp.com",
+  projectId: "authentication-89230",
+  storageBucket: "authentication-89230.appspot.com",
+  messagingSenderId: "879947702257",
+  appId: "1:879947702257:web:23670675895b467c87ae50"
+};
+
+      firebase.initializeApp(firebaseConfig);
+
+      // Handle form submit
+      const loginForm = document.getElementById("login-form");
+      loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const email = loginForm.email.value.trim();
+        const password = loginForm.password.value.trim();
+
+        try {
+          // Sign in user with email and password
+          await firebase.auth().signInWithEmailAndPassword(email, password);
+          alert("Login successfully!");
+          window.location.href = "table.html";
+          // Redirect to new URL
+        } catch (error) {
+          console.error(error);
+          alert("Failed to login. Invalid Credentials.");
+        }
+      });
+    </script>
+  </body>
+  <footer style="margin-top: 50ch" class="bg-dark text-white py-3">
+    <div class="container text-center">
+      <span>Hiniram mo, Isuli mo // 2023</span>
+    </div>
+  </footer>
+</html>
